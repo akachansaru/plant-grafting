@@ -23,11 +23,12 @@ public class Worktable : MonoBehaviour {
         }
     }
 
+    // Changed in flatten
     public Vector3 SnapToWorktable(PlantComponentFrontEnd plantComponent, Vector3 originalPosition) {
         Vector3 location;
         switch (plantComponent.GetPlantComponentType()) {
             case PlantComponentType.Roots:
-            if (plant.roots.GetData().componentType == PlantComponentType.Empty) {
+            if (plant.roots.Count == 0) {
                 location = rootLocation.position;
                 addedComponent = plantComponent.PlantComponent;
             } else {
@@ -57,9 +58,9 @@ public class Worktable : MonoBehaviour {
         }
         return location;
     }
-
+    // Changed in flatten
     public void StartGrowing() {
-        if (plant.roots.GetData().componentType == PlantComponentType.Empty) {
+        if (plant.roots.Count == 0) {
             CreateNewPlant();
         } else {
             Graft();
@@ -78,7 +79,8 @@ public class Worktable : MonoBehaviour {
             Debug.Log("plant: " + plant);
             Debug.Log("roots: " + plant.roots);
             //plant.roots.AddChild(addedComponent);
-            plant.roots = new TreeNode(addedComponent);
+            //plant.roots = new TreeNode(addedComponent);
+            plant.roots.Add(addedComponent); // = new List<PlantComponent>();
             GlobalControl.Instance.savedValues.availablePlants.Add(plant);
             GlobalControl.Instance.Save();
         } else {
