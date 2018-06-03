@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plant Grafting.Plugins", "Plant Grafting.Plugins.csproj", "{5A5AD032-9235-5F68-0488-AF3C8CACE891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plant Grafting", "Plant Grafting.csproj", "{028FE9FF-C974-F48F-F772-A923DF732548}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plant Grafting.Editor.Plugins", "Plant Grafting.Editor.Plugins.csproj", "{B9D2CEA4-0236-E800-C8CC-EB1ACC89ECA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A5AD032-9235-5F68-0488-AF3C8CACE891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5AD032-9235-5F68-0488-AF3C8CACE891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5AD032-9235-5F68-0488-AF3C8CACE891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5AD032-9235-5F68-0488-AF3C8CACE891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{028FE9FF-C974-F48F-F772-A923DF732548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028FE9FF-C974-F48F-F772-A923DF732548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028FE9FF-C974-F48F-F772-A923DF732548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{028FE9FF-C974-F48F-F772-A923DF732548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D2CEA4-0236-E800-C8CC-EB1ACC89ECA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D2CEA4-0236-E800-C8CC-EB1ACC89ECA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D2CEA4-0236-E800-C8CC-EB1ACC89ECA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D2CEA4-0236-E800-C8CC-EB1ACC89ECA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
