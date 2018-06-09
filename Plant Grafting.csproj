@@ -90,6 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Obsolete\TreeNode.cs" />
     <Compile Include="Assets\Scripts\Plant\LeafComponent.cs" />
     <Compile Include="Assets\Scripts\Plant\MovePlantComponent.cs" />
     <Compile Include="Assets\Scripts\Plant\PlantComponentFrontEnd.cs" />
@@ -105,7 +106,6 @@
     <Compile Include="Assets\Scripts\System\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\System\Settings.cs" />
     <Compile Include="Assets\Scripts\Utilities\MoveObject.cs" />
-    <Compile Include="Assets\Scripts\Utilities\TreeNode.cs" />
     <Compile Include="Assets\Scripts\Utilities\Vector3Serializable.cs" />
   </ItemGroup>
   <ItemGroup>
