@@ -31,7 +31,7 @@ public class PlantFrontEnd : MonoBehaviour {
 public class Plant {
    [SerializeField]
     private string PlantID;
-    public TreeNode roots;
+    public List<PlantComponent> roots;
     public PlantComponent stem;
     public PlantComponent leaves;
     public Vector3Serializable position; // Not sure if I need this
@@ -53,10 +53,14 @@ public class Plant {
         CreateID();
     }
 
+    //Changed in flatten
     public PlantComponent GrowPlant(PlantComponentFrontEnd frontEnd) {
-        PlantComponent p = new PlantComponent(PlantComponentType.Roots, roots.GetData().color);
+        PlantComponent p = new PlantComponent(PlantComponentType.Roots, roots[0].color);
         //roots.AddChild(p); // THis needs to be added to the componenent that is actually growing, not the root node root
-        roots.FindChild(roots, frontEnd.PlantComponent.GetID()).AddChild(p);
+        //roots.FindChild(roots, frontEnd.PlantComponent.GetID()).AddChild(p);
+        //roots.Add(roots.Find(r => r.GetID() == frontEnd.PlantComponent.GetID()));
+        roots.Add(p);
+        p.parent = frontEnd.PlantComponent;
         Debug.Log("Growing " + p.GetID());
         // PlantUtilities.InstantiateComponent(p);
         //stem.Grow();

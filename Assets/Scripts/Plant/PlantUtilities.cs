@@ -10,10 +10,13 @@ public class PlantUtilities : MonoBehaviour {
         Debug.Log("IntantiatePlant");
         GameObject plant = Instantiate(blankPlant, transform);
         plant.GetComponent<PlantFrontEnd>().Plant = p;
-        TreeVisitor instantiateVisitor = InstantiateComponent;
+        //TreeVisitor instantiateVisitor = InstantiateComponent;
 
         // Instantiate each root componenent
-        TreeNode.Traverse(p.roots, plant.transform, instantiateVisitor);
+        //TreeNode.Traverse(p.roots, plant.transform, instantiateVisitor);
+        foreach(PlantComponent r in p.roots) {
+            InstantiateComponent(r, plant.transform);
+        }
 
         // Instantiate each stem componenet
         if (p.stem.componentType != PlantComponentType.Empty) {
