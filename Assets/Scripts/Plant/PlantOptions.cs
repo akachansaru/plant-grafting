@@ -15,7 +15,7 @@ public class PlantOptions : MonoBehaviour, IPointerClickHandler {
         // Set the plant to be worked on. There should probably be a better way to do this. Worktable.EditPlant(GetComponent<PlantFrontEnd>().Plant);
         Worktable.plant = GetComponent<PlantFrontEnd>().Plant;
         GlobalControl.Instance.Save();
-        SceneManager.LoadScene("Worktable");
+        SceneManager.LoadScene(ConstantValues.SceneWorktable);
     }
 
 }

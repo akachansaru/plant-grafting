@@ -20,11 +20,9 @@ public class GlobalControl : MonoBehaviour {
             Debug.Log("Creating new GlobalControl");
             DontDestroyOnLoad(gameObject);
             Instance = this;
-            Debug.Log("musicVolume: " + savedValues.musicVolume);
         } else if (Instance != this) {
             Debug.Log("Updating GlobalControl");
             Destroy(gameObject);
-            Debug.Log("musicVolume: " + savedValues.musicVolume);
         }
         savePath = Application.persistentDataPath + "/saveValues.sheep";
         Load();

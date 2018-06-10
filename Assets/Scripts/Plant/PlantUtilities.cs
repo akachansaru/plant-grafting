@@ -10,45 +10,57 @@ public class PlantUtilities : MonoBehaviour {
         Debug.Log("IntantiatePlant");
         GameObject plant = Instantiate(blankPlant, transform);
         plant.GetComponent<PlantFrontEnd>().Plant = p;
-        //TreeVisitor instantiateVisitor = InstantiateComponent;
 
         // Instantiate each root componenent
-        //TreeNode.Traverse(p.roots, plant.transform, instantiateVisitor);
-        foreach(PlantComponent r in p.roots) {
+        foreach (PlantComponent r in p.roots) {
             InstantiateComponent(r, plant.transform);
         }
 
         // Instantiate each stem componenet
-        if (p.stem.componentType != PlantComponentType.Empty) {
-            GameObject stem = Instantiate(Resources.Load("Prefabs/Stem")) as GameObject;
-            stem.transform.SetParent(plant.transform);
-            stem.transform.localPosition = Vector3.up; // TODO: arbitrary amount up so it looks good now
+        foreach (PlantComponent s in p.stems) {
+            InstantiateComponent(s, plant.transform);
         }
+
         return plant;
     }
 
-    // For TreeVisitor delegate
     static void InstantiateComponent(PlantComponent comp, Transform plant) {
-        Debug.Log("instantiated comp ID: " + comp.GetID());
-        GameObject newComp = Instantiate(Resources.Load("Prefabs/Roots")) as GameObject; // TODO: will need a switch for components
-        newComp.GetComponent<PlantComponentFrontEnd>().PlantComponent = comp;
+        string prefabType;
+        switch (comp.componentType) {
+            case PlantComponentType.Roots:
+            prefabType = ConstantValues.PrefabRoots;
+            break;
+            case PlantComponentType.Stem:
+            prefabType = ConstantValues.PrefabStem;
+            break;
+            case PlantComponentType.Leaves:
+            prefabType = ConstantValues.PrefabLeaves;
+            break;
+            default:
+            prefabType = ConstantValues.PrefabRoots;
+            Debug.LogError("Could not instantiate componenet. Prefab type bad");
+            break;
+        }
+        GameObject compGO = Instantiate(Resources.Load(ConstantValues.PathPrefabs + "/" + prefabType)) as GameObject;
+        compGO.GetComponent<PlantComponentFrontEnd>().PlantComponent = comp;
 
         if (comp.componentType != PlantComponentType.Empty) {
-            //Transform parent;
+            if (comp.parent != null )
+                Debug.LogError("parent 1: " + comp.parent.GetID());
             if (comp.parent == null) {
-                newComp.GetComponent<PlantComponentFrontEnd>().parent = plant;
-                //parent = plant;
+                compGO.GetComponent<PlantComponentFrontEnd>().parent = plant;
                 Debug.Log("parent = plant");
             } else {
-                //parent = GameObject.Find(comp.parent.GetID()).transform;
-                newComp.GetComponent<PlantComponentFrontEnd>().parent = GameObject.Find(comp.parent.GetID()).transform;
-                Debug.Log("parent = " + newComp.GetComponent<PlantComponentFrontEnd>().parent.name);
+                Debug.LogError("newComp: " + compGO);
+                Debug.LogError("parent: " + comp.parent.GetID());
+                compGO.GetComponent<PlantComponentFrontEnd>().parent = GameObject.Find(comp.parent.GetID()).transform;
+                Debug.Log("parent = " + compGO.GetComponent<PlantComponentFrontEnd>().parent.name);
             }
 
-            newComp.transform.SetParent(newComp.GetComponent<PlantComponentFrontEnd>().parent);
-            newComp.name = comp.GetID();
-            Debug.Log("instantiated comp name: " + newComp.name);
-            newComp.transform.localPosition = Vector3.up * 0.5f; // TODO: arbitrary amount up so it looks good now
+            compGO.transform.SetParent(compGO.GetComponent<PlantComponentFrontEnd>().parent);
+            compGO.name = comp.GetID();
+            Debug.Log("instantiated comp name: " + compGO.name);
+            compGO.transform.localPosition = Vector3.up * 0.5f; // TODO: arbitrary amount up so it looks good now
         }
     }
 }

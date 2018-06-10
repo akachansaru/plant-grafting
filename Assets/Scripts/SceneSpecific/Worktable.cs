@@ -23,7 +23,6 @@ public class Worktable : MonoBehaviour {
         }
     }
 
-    // Changed in flatten
     public Vector3 SnapToWorktable(PlantComponentFrontEnd plantComponent, Vector3 originalPosition) {
         Vector3 location;
         switch (plantComponent.GetPlantComponentType()) {
@@ -33,11 +32,16 @@ public class Worktable : MonoBehaviour {
                 addedComponent = plantComponent.PlantComponent;
             } else {
                 location = originalPosition;
+                Debug.Log("Your plant already has roots");
             }
             break;
             case PlantComponentType.Stem:
-            if (plant == null || plant.stem.componentType != PlantComponentType.Empty) { // change to plant.roots == nulll
+            if (plant.roots.Count == 0) {
                 location = originalPosition;
+                Debug.Log("Your plant needs roots before you can graft on a stem");
+            } else if (plant.stems.Count != 0) {
+                location = originalPosition;
+                Debug.Log("Your plant already has a stem");
             } else {
                 location = stemLocation.position;
                 addedComponent = plantComponent.PlantComponent;
@@ -53,17 +57,21 @@ public class Worktable : MonoBehaviour {
             break;
             default:
             location = originalPosition;
-            Debug.Log("could not snap to place");
+            Debug.LogError("could not snap to place");
             break;
         }
         return location;
     }
-    // Changed in flatten
+
     public void StartGrowing() {
-        if (plant.roots.Count == 0) {
-            CreateNewPlant();
+        if (addedComponent != null) {
+            if (plant.roots.Count == 0) {
+                CreateNewPlant();
+            } else {
+                Graft();
+            }
         } else {
-            Graft();
+            Debug.Log("No new component added");
         }
     }
 
@@ -72,19 +80,15 @@ public class Worktable : MonoBehaviour {
     /// </summary>
     private void CreateNewPlant() {
         if (addedComponent.componentType == PlantComponentType.Roots) {
-            //Plant newPlant = new Plant(addedComponent);
             addedComponent.locked = true;
-            //GlobalControl.Instance.savedValues.availablePlants.Add(newPlant);
             Debug.Log("added comp: " + addedComponent);
             Debug.Log("plant: " + plant);
             Debug.Log("roots: " + plant.roots);
-            //plant.roots.AddChild(addedComponent);
-            //plant.roots = new TreeNode(addedComponent);
-            plant.roots.Add(addedComponent); // = new List<PlantComponent>();
+            plant.roots.Add(addedComponent);
             GlobalControl.Instance.savedValues.availablePlants.Add(plant);
             GlobalControl.Instance.Save();
         } else {
-            Debug.Log("Error: only roots should be added when creating new plant.");
+            Debug.LogError("Only roots should be added when creating new plant");
         }
     }
 
