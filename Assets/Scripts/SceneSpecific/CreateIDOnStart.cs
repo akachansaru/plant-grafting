@@ -6,7 +6,7 @@ using UnityEngine;
 public class CreateIDOnStart : MonoBehaviour {
 
 	void Start () {
-        GetComponent<PlantComponentFrontEnd>().PlantComponent.CreateID();
+        GetComponent<PlantComponentFrontEnd>().PlantComponent.CreateID(0);
         gameObject.name = GetComponent<PlantComponentFrontEnd>().PlantComponent.GetID();
     }
 	

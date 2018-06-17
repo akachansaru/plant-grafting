@@ -1,11 +1,13 @@
 ﻿
 public class ConstantValues  {
 
+    // Game values
+
     // Folder paths
     public static string PathPrefabs = "Prefabs";
 
     // Prefab names
-    public static string PrefabRoots = "Roots";
+    public static string PrefabRoot = "Root";
     public static string PrefabStem = "Stem";
     public static string PrefabLeaves = "Leaves";
 
